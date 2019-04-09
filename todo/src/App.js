@@ -39,14 +39,18 @@ class App extends Component {
           type="text"
           placeholder="New Todo"
           onChange={this.handleChange}
+          value={this.state.todo}
           />
           <button type="submit">Add</button>
         </form>
-        {this.props.todos.map(item => (
+        <div className="content">
+          {this.props.todos.map(item => (
           <h1 onClick={() => this.HandleTodo(item.id)} style={{
-            textDecoration: item.completed ? 'line-through' : 'none'}}
+            background: item.completed ? 'red' : 'grey'}}
             >{item.todo}</h1>
-        ))}
+          ))}
+        </div>
+        
       </div>
     );
   }
