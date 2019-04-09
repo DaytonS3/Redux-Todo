@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {addTodo} from './components/Action';
-
+import {addTodo, toggleTodo} from './components/Action';
 import './App.css';
-import TodoList from './components/TodoList';
+
 
 class App extends Component {
   state = {
@@ -25,6 +24,12 @@ class App extends Component {
     })
   }
 
+  HandleTodo = id => {
+      this.props.toggleTodo(id);
+  }
+
+  
+
   render() {
     console.log(this.props.todos)
     return (
@@ -38,10 +43,10 @@ class App extends Component {
           <button type="submit">Add</button>
         </form>
         {this.props.todos.map(item => (
-                //console.log(item),
-                <TodoList key={Math.random()} name={item.todo} 
-                />
-                ))}
+          <h1 onClick={() => this.HandleTodo(item.id)} style={{
+            textDecoration: item.completed ? 'line-through' : 'none'}}
+            >{item.todo}</h1>
+        ))}
       </div>
     );
   }
@@ -57,5 +62,5 @@ const MapStateToProps = (state) => {
 
 
 export default connect(
-  MapStateToProps,{addTodo}
+  MapStateToProps,{addTodo, toggleTodo}
 ) (App);
