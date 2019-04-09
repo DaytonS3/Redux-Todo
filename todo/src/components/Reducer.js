@@ -12,11 +12,11 @@ let initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    //console.log(action)
+    console.log(action)
     switch (action.type) {
       case Add_Todo:
         return {
-          todos: [...state.todos, action.payload]
+          todos: [...state.todos, {todo: action.payload, completed: false} ]
         };
       default:
         return state;
